@@ -1,0 +1,414 @@
+/* Reset CSS */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+a, img, b, u, i, center, ol, ul, li, form, label,
+table, tbody, tfoot, thead, tr, th, td, article,
+footer, header, hgroup, menu, nav, section{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+html{	font-size:16px;	}
+
+body{
+    color:white;
+    background:#3A3A3D;
+	font-family:Titillium Web, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    max-width:100vw;
+    overflow-x:hidden;
+}
+
+.flo-l{ float:left; }
+.flo-n{ float:none; }
+.flo-r{ float:right; }
+
+nav{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    line-height:3.5rem;
+    background:#18181F;
+    color:white;
+    box-shadow:-1px 1px 5px 1px black;
+}
+nav ul{
+    position:relative;
+    display:block;
+    list-style:none;
+    text-align:center;
+}
+nav ul li{
+    position:relative;
+    display:inline-block;
+    text-align:center;
+    min-width:7.5rem;
+}
+nav ul li.flo-r{
+    text-align:right;
+}
+nav ul li.flo-r{
+    text-align:left;
+}
+nav ul li a{
+    position:relative;
+    display:block;
+    text-transform:uppercase;
+    font-size:13px;
+    color:white;
+    text-decoration:none;
+}
+nav ul .logo{   width:14.375rem; background:url(/images/Logo.png) 75% 75% / cover no-repeat;    }
+nav ul .logo:hover{ opacity:.8; background:url(/images/Logo-Hover.png) 75% 75% / cover no-repeat;   }
+nav ul li:not(.logo, .searchbar) a:hover{
+    color:#009DFF;
+    background:rgba(100, 100, 100, .5);
+}
+nav ul li a .title{
+    margin-left:1.2rem;
+}
+nav ul li.flo-l a .title{
+    margin-left:1.25rem;
+}
+nav ul li.flo-r a .title{
+    margin-left:1.25rem;
+}
+nav ul li.flo-r a .fa{
+    position:absolute;
+    right:0;
+    margin-top:1rem;
+    margin-right:1rem;
+}
+/*  Custom Icons  */
+.hamburger{
+    position:absolute;
+    width:1.25rem;
+    height:0.125rem;
+    top:50%;
+    transform:translateY(-50%);
+    left:1rem;
+    background:white;
+}
+.hamburger:before, .hamburger:after{
+    content:'';
+    position:absolute;
+    top:-.4375rem;
+    right:0;
+    width:50%;
+    height:0.125rem;
+    background:white;
+}
+.hamburger:after{
+    top:0.4375rem;
+    left:0;
+}
+li:hover .hamburger{ transform:translateY(-50%) rotate(45deg);   }
+li:hover .hamburger:before, li:hover .hamburger:after{
+    top:-.3125rem;
+    right:.3125rem;
+    transform:rotate(-90deg);
+}
+li:hover .hamburger:after{
+    top:.3125rem;
+    left:.3125rem;
+}
+.searchbar input{
+    position:relative;
+    padding:0;
+    max-width:100%;
+    width:7.5rem;
+    color:white;
+    padding-left:1rem;
+    padding-right:3rem;
+    margin:0;
+    outline:none;
+    background:none;
+    border:none;
+    font-size:1.5rem;
+    padding-top:1rem;
+    line-height:2.5rem;
+}
+
+.searchbar input:focus, .searchbar input[value]:not([value=""]){
+    width:350px;
+    background:rgba(100, 100, 100, .25);
+}
+.search{
+    position:absolute;
+    width:calc(100% - 1.5rem);
+    top:0;
+    left:0;
+    padding-left:1rem;
+    line-height:3.5rem;
+    text-transform:uppercase;
+    font-size:13px;
+    cursor:pointer;
+}
+.search:before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:45%;
+    right:.5rem;
+    transform:translateY(-50%) rotate(-45deg);
+    border:0.125rem solid white;
+    border-radius: 100%;
+    height:1.25rem;
+    width:1.25rem;
+}
+.search:after{
+    content: '';
+    display: block;
+    border:.0625rem solid white;
+    position: absolute;
+    top:2.2rem;
+    right:.15rem;
+    width:.5rem;
+    transform: rotate(45deg);
+    transition: all 0.3s;
+}
+.searchbar input:focus ~ .search, .searchbar input:not([value=""]) ~ .search{  line-height:1rem;   }
+.searchbar input:focus ~ .search:before, .searchbar input:not([value=""]) ~ .search:before{   top:1.6rem; }
+
+.searchbar input:focus ~ .search:before, .searchbar input:not([value=""]) ~ .search:before{
+    height: 0;
+    width:1.25rem;
+    border-radius: 0;
+    margin-top:.225rem;
+    border-width:.0625rem;
+}
+.searchbar input:focus ~ .search:after, .searchbar input:not([value=""]) ~ .search:after{
+    width:1.25rem;
+    top:1.75rem;
+    right:.525rem;
+    border-width:.0625rem;
+}
+.searchbar input{
+    position:relative;
+    padding:0;
+    max-width:100%;
+    width:7.5rem;
+    color:white;
+    padding-left:1rem;
+    padding-right:3rem;
+    margin:0;
+    outline:none;
+    background:none;
+    border:none;
+    font-size:1.5rem;
+    padding-top:1rem;
+    line-height:2.5rem;
+}
+
+.searchbar input:focus, .searchbar input[value]:not([value=""]){
+    width:350px;
+}
+.search{
+    position:absolute;
+    width:calc(100% - 1.5rem);
+    top:0;
+    left:0;
+    padding-left:1rem;
+    line-height:3.5rem;
+    text-transform:uppercase;
+    font-size:13px;
+    cursor:pointer;
+}
+.search:before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:45%;
+    right:.5rem;
+    transform:translateY(-50%) rotate(-45deg);
+    border:0.125rem solid white;
+    border-radius: 100%;
+    height:1.25rem;
+    width:1.25rem;
+}
+.search:after{
+    content: '';
+    display: block;
+    border:.0625rem solid white;
+    position: absolute;
+    top:2.2rem;
+    right:.15rem;
+    width:.5rem;
+    transform: rotate(45deg);
+    transition: all 0.3s;
+}
+.searchbar input:focus ~ .search, .searchbar input:not([value=""]) ~ .search{  line-height:1rem;   }
+.searchbar input:focus ~ .search:before, .searchbar input:not([value=""]) ~ .search:before{   top:1.6rem; }
+
+.searchbar input:focus ~ .search:before, .searchbar input:not([value=""]) ~ .search:before{
+    height: 0;
+    width:1.25rem;
+    border-radius: 0;
+    margin-top:.225rem;
+    border-width:.0625rem;
+}
+.searchbar input:focus ~ .search:after, .searchbar input:not([value=""]) ~ .search:after{
+    width:1.25rem;
+    top:1.75rem;
+    right:.525rem;
+    border-width:.0625rem;
+}
+.searchbar a{
+    background:#18181F;
+}
+
+nav ul li:hover .hamburger,nav ul li:hover .hamburger:after,
+nav ul li:hover .hamburger:before{  background:#009DFF; }
+nav ul li:hover .search, nav ul li:hover .search:after, nav ul li:hover .search:before{
+    border-color:#009DFF;
+}
+
+/*  Page content    */
+.content{
+    position:relative;
+    margin-top:3.5rem;
+    padding:1.25rem;
+    width:calc(100% - 2.5rem);
+    min-height:calc(100% - 4rem);
+    overflow-x:hidden;
+    text-align:center;
+}
+.content h1{
+    margin-bottom:.5rem;
+    text-shadow:0px 0px 3px black;
+}
+
+/*  Filters */
+.groupbox{
+    position:relative;
+    border:1px solid white;
+    left:50%;
+    transform:translateX(-50%);
+    padding:20px;
+    text-align:left;
+    /* border-radius:5px; */
+    width:auto;
+    max-width:960px;
+    box-shadow:0px 1px 4px 2px black;
+}
+.groupbox:after{
+    content:attr(data-title);
+    position:absolute;
+    top:-1rem;
+    left:1rem;
+    background:#29292E;
+    padding:0 .3rem;
+}
+
+.filter{
+    position:relative;
+    display:inline-block;
+    text-align:center;
+    padding:5px;
+    padding-top:15px;
+    background:#CCC;
+    color:#343330;
+    margin-bottom:5px;
+    /* border-radius:2px; */
+    box-shadow:0 1px 2px 1px black;
+}
+.filter:after{
+    content:'';
+    position:absolute;
+    bottom:.2rem;
+    left:2.5%;
+    width:95%;
+    height:1px;
+    background:#343330;
+}
+.filter.xxsmall{width:calc(20% - 13.5px)}
+.filter.xsmall{width:calc(25% - 13.5px);}
+.filter.small{width:calc((100% / 3) - 13px);}
+.filter.medium{width:calc(50% - 12.3px);}
+.filter.large{width:calc(75% - 11px);}
+.filter.xlarge{width:calc(100% - 10px);}
+.filter label{
+    position:absolute;
+    top:15px;
+    left:0;
+    margin-left:10px;
+    line-height:150%;
+    /* font-weight:bold; */
+    z-index:1;
+    cursor:pointer;
+}
+.filter input,
+.filter select,
+.filter textarea{
+    position:relative;
+    display:block;
+    width:100%;
+    padding:4px 0;
+    text-align:left;
+    border:none;
+    background:none;
+    color:#343330;
+    border:none;
+    outline:0;
+}
+.filter input,
+.filter select{
+    max-height:1.5rem;
+}
+.filter select, .filter select option{  background:#CCC; }
+.filter textarea{ resize:none;height:100px; }
+.filter input:focus ~ label,
+.filter select ~ label,
+.filter label, /*   Always small    */
+.filter textarea:focus ~ label,
+.filter input:not([value=""]) ~ label,
+.filter textarea:not([value=""]) ~ label{
+    top:0px;
+    margin-left: 5px;
+    font-size: 13px;
+    font-weight:500;
+    z-index:999;
+}
+.filter.split input,
+.filter.split select{
+    position:relative;
+    display:inline-block;
+    width:calc(50% - 3px);
+}
+.filter.btn input,
+.filter.btn select{
+    width:calc(100% - 45px);
+    overflow-y:hidden;
+}
+
+.filter.split label:last-child{
+    left:50%;
+}
+.filter button{
+    position:absolute;
+    right:.35rem;
+    top:.25rem;
+    width:40px;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor:pointer;
+    height:2rem;
+}
+/*  End Filters */
+
+
+/*  Animated Elements   */
+a, nav ul .logo, nav ul li:not(.logo),
+.hamburger, .hamburger:before, .hamburger:after,
+.searchbar input, .search, .search:before, .search:after{
+    transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -o-transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -ms-transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -moz-transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -webkit-transition:300ms cubic-bezier(.4, 0, .2, 1);
+}
+/*  End Animated Elements   */
