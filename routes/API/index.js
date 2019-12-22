@@ -3,11 +3,31 @@
 module.exports = function(){
     //  Dependencies
     var router = require('express').Router();
+    var request = require('request');
     var path = require('path');
     router.get('/', function(req, res, next){
         //  Redirect to main page?
         var obj = {key: "value"};
         res.send(JSON.stringify(obj));
+    });
+    // var player = [
+    //     {name: 'Sean', platform: 'xbl', ign: 'SeannnKiely'},
+    //     {name: 'Dave', platform: 'xbl', ign: 'DShipley93'},
+    // ];
+    
+      
+
+    router.use('/:platform/:player', function(req, res){
+        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${req.params.player}/profile/type/mp`;
+        request.get(uri, function(error, response, body){
+            if(error){
+                var obj = {error: "Please specify an autocomplete type."};
+                res.send(JSON.stringify(obj));
+            } else {
+                // level, 
+                res.send(JSON.stringify(response, null, 4));
+            }
+        });
     });
     
     // For Creating New DOM Elements on the web pages.

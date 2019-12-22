@@ -5,8 +5,42 @@
     <body>
         <%- include('partials/navigation'); %>
         <div class='content'>
-            <h1>Home Page</h1>
-            <%= content %>
+            <!-- <h1>Home Page</h1> -->
+            <table>
+                <tr>
+                    <th>Rank</th>
+                    <th>In Game Name</th>
+                    <th>Games Played</th>
+                    <th>Kills</th>
+                    <th>Deaths</th>
+                    <th>Ratio</th>
+                    <th>Avg Kills per game</th>
+                    <th>Headshots</th>
+                    <th>Best Streak</th>
+                </tr>
+                <tr>
+                    <th>#1</th>
+                    <th>SeannnKiely</th>
+                    <th>50</th>
+                    <th>800</th>
+                    <th>700</th>
+                    <th><%= parseFloat(800/700).toFixed( 2 ) %></th>
+                    <th><%= parseFloat(800/50).toFixed( 2 ) %></th>
+                    <th>123</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <th>#1</th>
+                    <th>SeannnKiely</th>
+                    <th>50</th>
+                    <th>800</th>
+                    <th>700</th>
+                    <th><%= parseFloat(800/700).toFixed( 2 ) %></th>
+                    <th><%= parseFloat(800/50).toFixed( 2 ) %></th>
+                    <th>123</th>
+                    <th>10</th>
+                </tr>
+            </table>
         </div>
     </body>
 </html>

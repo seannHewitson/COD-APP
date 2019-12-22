@@ -125,7 +125,8 @@ a:hover{	color:#009DFF;	} */
 
 
 /*	Font-size	*/
-.fs-0-5{	font-size:0.5rem	}
+.fs-05{	font-size:0.5rem	}
+.fs-075{	font-size:0.75rem	}
 .fs-1{		font-size:1rem	}
 .fs-1-5{	font-size:1.5rem	}
 .fs-2{		font-size:2rem	}
@@ -293,3 +294,29 @@ a:hover{	color:#009DFF;	} */
 .list.hor > li{		display:inline-block;	}
 .list.stretch{	display:table;	}
 .list.stretch > li{	display:table-cell;	}
+
+/*  Table Design    */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background:#19191E;
+}
+td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+tr{
+    cursor:pointer;
+}
+tr:not(:first-child):nth-child(odd) {
+    background-color:#19191D;
+}
+tr:nth-child(even) {
+    background-color:#29292E;
+}
+tr:not(:first-child):hover{
+    background:red;
+}

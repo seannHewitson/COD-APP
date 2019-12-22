@@ -41,7 +41,7 @@ app.use(session({
 // Routes
 app.use('/', require('../routes/index')());
 
-// app.use('/API', require('../routes/API')());
+app.use('/API', require('../routes/API')());
 
 // Error Handling
 app.use(function(req, res, next){   // 404 not found error

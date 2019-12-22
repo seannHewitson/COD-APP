@@ -1,7 +1,7 @@
 /* Reset CSS */
 html, body, div, span, h1, h2, h3, h4, h5, h6, p,
 a, img, b, u, i, center, ol, ul, li, form, label,
-table, tbody, tfoot, thead, tr, th, td, article,
+article,
 footer, header, hgroup, menu, nav, section{
 	margin: 0;
 	padding: 0;
@@ -399,7 +399,17 @@ nav ul li:hover .search, nav ul li:hover .search:after, nav ul li:hover .search:
     height:2rem;
 }
 /*  End Filters */
-
+.player{
+    text-align:left;
+    background:#19191E;
+}
+.player li{
+    /* width:200px; */
+    text-align:center;
+    min-width:20px;
+    padding:0 10px;
+    line-height:50px;
+}
 
 /*  Animated Elements   */
 a, nav ul .logo, nav ul li:not(.logo),

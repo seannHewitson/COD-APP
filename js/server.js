@@ -9,13 +9,25 @@ app.set('port', port);
 
 //  Create Server
 var server = https.createServer({
-    key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
-    cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
+  key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
+  cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
 }, app);
+
+
+var players = [
+  {name: 'Sean', platform: 'xbl', ign: 'SeannnKiely'}
+];
+
+
+var io = require('socket.io').listen(server);
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+io.on('connection', function(socket){
+  socket.emit('listPlayers', players);
+});
 
 function onError(error){
     if(error.syscall !== 'listen')
