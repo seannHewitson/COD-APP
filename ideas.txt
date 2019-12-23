@@ -1,0 +1,6 @@
+Display UL top (Players UL) - Scrollable
+Player Card: Name, IGN, Ingame Level(icon too?), Leaderboard Rank (between us), Platform,
+Display Stats table bottom - Scrollable?
+Table: Kills, Deaths, K/D Ratio, Highest Killstreak, Shots Fired, Hits, Accuracy,
+Favourite Weapon, Most Played Gamemode, Most kills in gamemode, Last Active, Last Map, Last Gamemode,
+Scrollable table on the side of weapons and kills with each, don't show if 0
