@@ -270,7 +270,7 @@ nav ul li:hover .search, nav ul li:hover .search:after, nav ul li:hover .search:
     margin-top:3.5rem;
     padding:1.25rem;
     width:calc(100% - 2.5rem);
-    min-height:calc(100% - 4rem);
+    /* min-height:calc(100% - 4rem); */
     overflow-x:hidden;
     text-align:center;
 }
@@ -399,22 +399,99 @@ nav ul li:hover .search, nav ul li:hover .search:after, nav ul li:hover .search:
     height:2rem;
 }
 /*  End Filters */
-.player{
+
+div.players, div.stats{
+    position:relative;
+    display:inline-block;
+    width:300px;
+    margin:10px;
     text-align:left;
-    background:#19191E;
+    vertical-align: text-top;
 }
-.player li{
-    /* width:200px; */
+div.stats{
+    text-align:right;
+    width:calc(100% - 350px);
+}
+ul.players{
+    left:50%;
+    transform:translateX(-50%);
+    text-align:left;
+    width:auto;
+}
+ul.players li, ul.stats li{
+    background:#19191D;
+    padding:5px;
+    padding-left:10px;
+    margin:10px;
+    /* height:30px; */
+    height:auto;
+    line-height:30px;
+    text-align:left;
+    cursor:pointer;
+    /* width:250px; */
+    width:calc(25% - 40px);
+}
+ul.players li{
+    border-left:2px solid #FF3D3D;
+}
+ul.players .online{
+    border-color:#3DFF3D;
+}
+ul.players li .name{
+    /* position: relative; */
+}
+ul.players li .name span{
+    position:absolute;
+    top:0;
+    right:0;
+    width:40px;
+    height:40px;
+    line-height:40px;
     text-align:center;
-    min-width:20px;
-    padding:0 10px;
-    line-height:50px;
+}
+ul.players li .gamertag{
+    font-weight:lighter;
+    position: relative;
+}
+ul.players li .gamertag .rank{
+    position:absolute;
+    top:0;
+    right:0;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    font-weight:bold;
+}
+ul.players .active, ul.stats .active{
+    /* height:80px; */
+    font-weight:bold;
+    color:#009DFF;
+}
+ul.players .active:after, ul.stats .active:after,
+ul.players .active:before, ul.stats .active:before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle, rgba(0,157,255,1) 0%, transparent 75%);
+    opacity:.15;
+}
+ul.players .active:after, ul.stats .active:after{
+    top:-3px;
+    height:calc(100% + 6px);
+    opacity:.75;
+    background:linear-gradient(circle, #19191D 10% rgba(0,157,255,1) 0%, #19191D 90%);
+    z-index:-1;
 }
 
 /*  Animated Elements   */
 a, nav ul .logo, nav ul li:not(.logo),
 .hamburger, .hamburger:before, .hamburger:after,
-.searchbar input, .search, .search:before, .search:after{
+.searchbar input, .search, .search:before, .search:after,
+ul.players li, ul.stats li{
     transition:300ms cubic-bezier(.4, 0, .2, 1);
     -o-transition:300ms cubic-bezier(.4, 0, .2, 1);
     -ms-transition:300ms cubic-bezier(.4, 0, .2, 1);

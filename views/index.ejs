@@ -5,42 +5,49 @@
     <body>
         <%- include('partials/navigation'); %>
         <div class='content'>
-            <!-- <h1>Home Page</h1> -->
-            <table>
-                <tr>
-                    <th>Rank</th>
-                    <th>In Game Name</th>
-                    <th>Games Played</th>
-                    <th>Kills</th>
-                    <th>Deaths</th>
-                    <th>Ratio</th>
-                    <th>Avg Kills per game</th>
-                    <th>Headshots</th>
-                    <th>Best Streak</th>
-                </tr>
-                <tr>
-                    <th>#1</th>
-                    <th>SeannnKiely</th>
-                    <th>50</th>
-                    <th>800</th>
-                    <th>700</th>
-                    <th><%= parseFloat(800/700).toFixed( 2 ) %></th>
-                    <th><%= parseFloat(800/50).toFixed( 2 ) %></th>
-                    <th>123</th>
-                    <th>10</th>
-                </tr>
-                <tr>
-                    <th>#1</th>
-                    <th>SeannnKiely</th>
-                    <th>50</th>
-                    <th>800</th>
-                    <th>700</th>
-                    <th><%= parseFloat(800/700).toFixed( 2 ) %></th>
-                    <th><%= parseFloat(800/50).toFixed( 2 ) %></th>
-                    <th>123</th>
-                    <th>10</th>
-                </tr>
-            </table>
+            <!-- <div class='players'> -->
+                <ul class='list hor players'>
+                    <li class='active'>
+                        <div class='name'>
+                            Sean Hewitson
+                            <span class='fab fa-xbox'></span>
+                            <!-- <span class='fas fa-mouse'></span>
+                            <span class='fab fa-playstation'></span> -->
+                        </div><div class='gamertag'>
+                            SeannnKiely
+                            <span class='rank'>32</span>
+                        </div>
+                    </li>
+                    <li>Player Two</li>
+                    <li>Player Three</li>
+                    <li>Player Four</li>
+                    <li>Player Five</li>
+                    <li>Player Six</li>
+                </ul>
+            <!-- </div> -->
+            <!-- <div class='stats'>
+                <ul class='list stats'>
+                    <li class='active'>Stat One</li>
+                    <li>Stat Two</li>
+                    <li>Stat Three</li>
+                    <li>Stat Four</li>
+                    <li>Stat Five</li>
+                    <li>Stat Six</li>
+                    <li>Stat Seven</li>
+                    <li>Stat Eight</li>
+                </ul>
+            </div> -->
         </div>
+        <script>
+            // var stats = document.getElementsByClassName('stats')[1];
+            // var stat = stats.getElementsByTagName('li');
+            // for(var s in stat){
+            //     stat[s].onmouseover = function(){
+            //         var active = stats.querySelector('.active');
+            //         if(active) active.classList.remove('active');
+            //         this.classList.add('active');
+            //     };
+            // }
+        </script>
     </body>
 </html>

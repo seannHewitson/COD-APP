@@ -15,7 +15,14 @@ var server = https.createServer({
 
 
 var players = [
-  {name: 'Sean', platform: 'xbl', ign: 'SeannnKiely'}
+  {name: 'Sean Hewitson', platform: 'xbl', ign: 'SeannnKiely', status: 'online'},
+  {name: 'David Shipley', platform: 'xbl', ign: 'DShipley93', status: 'offline'},
+  {name: 'Zack Butcher', platform: 'xbl', ign: 'Buttcher97', status: 'offline'},
+  {name: 'Jamie Cox', platform: 'battle', ign: '', status: 'offline'},
+  {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg', status: 'offline'},
+  {name: 'Jamie Collins', platform: 'xbl', ign: '', status: 'offline'},
+  {name: 'Donald Bury', plattform: 'battle', ign: '', status: 'offline'},
+  {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: '', status: 'offline'}
 ];
 
 
