@@ -25,7 +25,7 @@ module.exports = function(){
                 res.send(JSON.stringify(obj));
             } else {
                 // level, 
-                res.send(JSON.stringify(response, null, 4));
+                res.send(response.body);
             }
         });
     });

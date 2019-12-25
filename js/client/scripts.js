@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function(){
             addPlayer(data[p]);
         }
     });
+    io.emit('getStats', {data: 'test'});
+    io.on('recievedStats', function(data){
+        console.log(data);
+    });
     console.log('Content Loaded')
     var playerStats = [];
     var players = document.getElementsByClassName('players')[0];

@@ -4,6 +4,8 @@ module.exports = function(){
     var router = express.Router();
     var request = require('request');
     require('colors');
+
+    players = [];
     
     router.get('/', function(req, res, next){
         res.render('index.ejs', {
