@@ -43,11 +43,10 @@ function getStats(){
         return {error: err};
       }
       var data = JSON.parse(response.body).data;
-      fs.writeFile(path.resolve(__dirname + '/../response.json'), JSON.stringify(data), function(err){
+      fs.writeFile(path.resolve(__dirname + '/../response.json'), JSON.stringify(data, null, 4), function(err){
         if(err) return console.log(err);
         console.log("Written to file".green)
       });
-      fs.writeFileSync('../response.json', JSON.stringify(data));
       console.log(data);
       var lifetime = data.lifetime.all;
       //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
