@@ -3,9 +3,10 @@
         <%- include('partials/head'); %>
     </head>
     <body>
-        <%- include('partials/navigation'); %>
+        
         <div class='content'>
-            <!-- <div class='players'> -->
+            <div class='playersSection'>
+            <h1>Players</h1>
                 <ul class='list hor players'>
                     <li class='active'>
                         <div class='name'>
@@ -24,30 +25,10 @@
                     <li>Player Five</li>
                     <li>Player Six</li>
                 </ul>
-            <!-- </div> -->
-            <!-- <div class='stats'>
-                <ul class='list stats'>
-                    <li class='active'>Stat One</li>
-                    <li>Stat Two</li>
-                    <li>Stat Three</li>
-                    <li>Stat Four</li>
-                    <li>Stat Five</li>
-                    <li>Stat Six</li>
-                    <li>Stat Seven</li>
-                    <li>Stat Eight</li>
-                </ul>
-            </div> -->
+            </div>
+            <div class='statsSection'>
+                <h1 id='statsTitle'>Sean's Stats'</h1>
+            </div>
         </div>
-        <script>
-            // var stats = document.getElementsByClassName('stats')[1];
-            // var stat = stats.getElementsByTagName('li');
-            // for(var s in stat){
-            //     stat[s].onmouseover = function(){
-            //         var active = stats.querySelector('.active');
-            //         if(active) active.classList.remove('active');
-            //         this.classList.add('active');
-            //     };
-            // }
-        </script>
     </body>
 </html>

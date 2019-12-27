@@ -267,7 +267,7 @@ nav ul li:hover .search, nav ul li:hover .search:after, nav ul li:hover .search:
 /*  Page content    */
 .content{
     position:relative;
-    margin-top:3.5rem;
+    /* margin-top:3.5rem; */
     padding:1.25rem;
     width:calc(100% - 2.5rem);
     /* min-height:calc(100% - 4rem); */
@@ -278,7 +278,9 @@ nav ul li:hover .search, nav ul li:hover .search:after, nav ul li:hover .search:
     margin-bottom:.5rem;
     text-shadow:0px 0px 3px black;
 }
-
+.content > div{
+    margin-bottom:2.5rem;
+}
 /*  Filters */
 .groupbox{
     position:relative;
@@ -418,7 +420,7 @@ ul.players{
     text-align:left;
     width:auto;
 }
-ul.players li, ul.stats li{
+ul.players > li, ul.stats > li{
     background:#19191D;
     padding:5px;
     padding-left:10px;
@@ -431,16 +433,16 @@ ul.players li, ul.stats li{
     /* width:250px; */
     width:calc(25% - 40px);
 }
-ul.players li{
+ul.players > li{
     border-left:2px solid #FF3D3D;
 }
-ul.players .online{
+ul.players > .online{
     border-color:#3DFF3D;
 }
-ul.players li .name{
-    /* position: relative; */
+ul.players li > .name{
+    position: relative;
 }
-ul.players li .name span{
+ul.players li > .name span{
     position:absolute;
     top:0;
     right:0;
@@ -449,11 +451,11 @@ ul.players li .name span{
     line-height:40px;
     text-align:center;
 }
-ul.players li .gamertag{
+ul.players li > .gamertag{
     font-weight:lighter;
     position: relative;
 }
-ul.players li .gamertag .rank{
+ul.players li > .gamertag .rank{
     position:absolute;
     top:0;
     right:0;
@@ -463,13 +465,13 @@ ul.players li .gamertag .rank{
     text-align:center;
     font-weight:bold;
 }
-ul.players .active, ul.stats .active{
+ul.players > .active, ul.stats > .active{
     /* height:80px; */
     font-weight:bold;
     color:#009DFF;
 }
-ul.players .active:after, ul.stats .active:after,
-ul.players .active:before, ul.stats .active:before{
+ul.players > .active:after, ul.stats > .active:after,
+ul.players > .active:before, ul.stats > .active:before{
     content:'';
     position:absolute;
     top:0;
@@ -479,12 +481,59 @@ ul.players .active:before, ul.stats .active:before{
     background:radial-gradient(circle, rgba(0,157,255,1) 0%, transparent 75%);
     opacity:.15;
 }
-ul.players .active:after, ul.stats .active:after{
+ul.players > .active:after, ul.stats > .active:after{
     top:-3px;
     height:calc(100% + 6px);
     opacity:.75;
     background:linear-gradient(circle, #19191D 10% rgba(0,157,255,1) 0%, #19191D 90%);
     z-index:-1;
+}
+ul.players .platform{
+    position:absolute;
+    top:0;
+    right:0;
+    padding-top:5px;
+    text-align:center;
+    vertical-align: text-bottom;
+}
+ul.players ul li span{
+    position: relative;
+    display:block;
+    text-align:center;
+    line-height:1rem;
+    font-weight:bold;
+}
+ul.players ul li span.stat{
+    text-transform:uppercase;
+    font-size:.75rem;
+}
+
+h1{
+    position:relative;
+    font-weight:normal;
+    font-size:3rem;
+    text-align:center;
+    color:white;
+    text-shadow:0px 0px 5px #19191E;
+    font-family: 'Lobster', cursive;
+}
+h1:after,
+h1:before{
+    content:'';
+    display:block;
+    position:absolute;
+    width:calc(50% - 110px);
+    height:2px;
+    border-radius:50%;
+    top:55%;
+    left:-5px;
+    background:white;
+    box-shadow:0px 0px 1px #19191E;
+    transform:translateY(-25%);
+}
+h1:before{
+    left:auto;
+    right:-5px;
 }
 
 /*  Animated Elements   */
