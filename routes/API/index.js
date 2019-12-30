@@ -17,8 +17,23 @@ module.exports = function(){
     
       
 
-    router.use('/:platform/:player', function(req, res){
+    router.use('/:platform/:player/', function(req, res){
         var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${req.params.player}/profile/type/mp`;
+        console.log(uri);
+        request.get(uri, function(error, response, body){
+            if(error){
+                var obj = {error: "Please specify an autocomplete type."};
+                res.send(JSON.stringify(obj));
+            } else {
+                // level, 
+                res.send(response.body);
+            }
+        });
+    });
+
+    router.use('/:platform/:player/', function(req, res){
+        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/:version/title/mw/platform/${req.params.platform}/gamer/${req.params.player}/profile/friends/type/mp`;
+        console.log(uri);
         request.get(uri, function(error, response, body){
             if(error){
                 var obj = {error: "Please specify an autocomplete type."};
