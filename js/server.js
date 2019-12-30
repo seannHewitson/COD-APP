@@ -76,22 +76,26 @@ function getStats(){
         var data = JSON.parse(response.body).data;
         if(data){
           console.log(data);
-          var lifetime = data.lifetime.all;
-          //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
-          return stats.push({
-            name: player.name,
-            gamertag: data.username,
-            platform: player.platform,
-            level: data.level,
-            kills: lifetime.properties.kills,
-            deaths: lifetime.properties.deaths,
-            kdRatio: lifetime.properties.kdRatio,
-            hits: lifetime.properties.hits,
-            misses: lifetime.properties.misses,
-            scorePerMin: lifetime.properties.scorePerMinute,
-            headshots: lifetime.properties.headshots,
-            assist: lifetime.properties.assists,
-          });
+          if(data.lifetime){
+            if(data.lifetime.all){
+              var lifetime = data.lifetime.all;
+            //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
+            return stats.push({
+              name: player.name,
+              gamertag: data.username,
+              platform: player.platform,
+              level: data.level,
+              kills: lifetime.properties.kills,
+              deaths: lifetime.properties.deaths,
+              kdRatio: lifetime.properties.kdRatio,
+              hits: lifetime.properties.hits,
+              misses: lifetime.properties.misses,
+              scorePerMin: lifetime.properties.scorePerMinute,
+              headshots: lifetime.properties.headshots,
+              assist: lifetime.properties.assists,
+            });
+            }
+          }
         } else {
           console.log("Error retrieving data...");
         }
