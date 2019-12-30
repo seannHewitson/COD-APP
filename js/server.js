@@ -28,7 +28,7 @@ var players = [
   // {name: 'Jamie Cox', platform: 'battle', ign: ''},
   // {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
   // {name: 'Jamie Collins', platform: 'xbl', ign: ''},
-  // {name: 'Donald Bury', plattform: 'battle', ign: 'Don5ki%232623'},
+  {name: 'Donald Bury', plattform: 'battle', ign: 'Don5ki#2623'},
   // {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: ''}
 ];
 
@@ -66,7 +66,8 @@ function getStatsTest(){
 function getStats(){
   stats = [];
   players.forEach(function(player){
-    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${player.platform}/gamer/${player.ign}/profile/type/mp`;
+    var name = encodeURI(player.ign);
+    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${player.platform}/gamer/${name}/profile/type/mp`;
     request.get(uri, function(err, response, body){
       if(err){
         console.log(`${err}`.red);
