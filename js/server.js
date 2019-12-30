@@ -71,29 +71,26 @@ function getStats(){
       if(err){
         console.log(`${err}`.red);
         return {error: err};
+      } else {
+        var data = JSON.parse(response.body).data;
+        console.log(data);
+        var lifetime = data.lifetime.all;
+        //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
+        return stats.push({
+          name: player.name,
+          gamertag: data.username,
+          platform: player.platform,
+          level: data.level,
+          kills: lifetime.properties.kills,
+          deaths: lifetime.properties.deaths,
+          kdRatio: lifetime.properties.kdRatio,
+          hits: lifetime.properties.hits,
+          misses: lifetime.properties.misses,
+          scorePerMin: lifetime.properties.scorePerMinute,
+          headshots: lifetime.properties.headshots,
+          assist: lifetime.properties.assists,
+        });
       }
-      var data = JSON.parse(response.body).data;
-      fs.writeFile(path.resolve(__dirname + '/../response.json'), JSON.stringify(data, null, 4), function(err){
-        if(err) return console.log(err);
-        console.log("Written to file".green)
-      });
-      console.log(data);
-      var lifetime = data.lifetime.all;
-      //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
-      return stats.push({
-        name: player.name,
-        gamertag: data.username,
-        platform: player.platform,
-        level: data.level,
-        kills: lifetime.properties.kills,
-        deaths: lifetime.properties.deaths,
-        kdRatio: lifetime.properties.kdRatio,
-        hits: lifetime.properties.hits,
-        misses: lifetime.properties.misses,
-        scorePerMin: lifetime.properties.scorePerMinute,
-        headshots: lifetime.properties.headshots,
-        assist: lifetime.properties.assists,
-      });
     });
   });
 
