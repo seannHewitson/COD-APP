@@ -295,6 +295,7 @@ a:hover{	color:#009DFF;	} */
 .list.stretch{	display:table;	}
 .list.stretch > li{	display:table-cell;	}
 
+.list.othercolor li:nth-child(even){    background:rgba(100, 100, 100, .25);}
 /*  Table Design    */
 
 table {

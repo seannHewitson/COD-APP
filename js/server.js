@@ -32,10 +32,10 @@ var players = [
   // {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: ''}
 ];
 
-var stats = getStatsTest();
+var stats = getStats();
 
 setTimeout(function(){
-  stats = getStatsTest();
+  stats = getStats();
 }, 60000);
 
 function getStatsTest(){
