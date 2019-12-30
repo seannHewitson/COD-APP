@@ -7,7 +7,7 @@ var path = require('path');
 var fs = require('fs');
 
 //  Set Server port
-var port = 1337;
+var port = process.env.PORT == null ? 1337 : process.env.PORT;
 app.set('port', port);
 
 //  Create Server
@@ -28,7 +28,7 @@ var players = [
   // {name: 'Jamie Cox', platform: 'battle', ign: ''},
   // {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
   // {name: 'Jamie Collins', platform: 'xbl', ign: ''},
-  // {name: 'Donald Bury', plattform: 'battle', ign: ''},
+  {name: 'Donald Bury', plattform: 'battle', ign: 'Don5ki%232623'},
   // {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: ''}
 ];
 
