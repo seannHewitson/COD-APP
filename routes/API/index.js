@@ -18,7 +18,8 @@ module.exports = function(){
       
 
     router.use('/:platform/:player/', function(req, res){
-        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${req.params.player}/profile/type/mp`;
+        var name = encodeURI(req.params.player);
+        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/type/mp`;
         console.log(uri);
         request.get(uri, function(error, response, body){
             if(error){
@@ -31,8 +32,9 @@ module.exports = function(){
         });
     });
 
-    router.use('/:platform/:player/', function(req, res){
-        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/:version/title/mw/platform/${req.params.platform}/gamer/${req.params.player}/profile/friends/type/mp`;
+    router.use('/Friends/:platform/:player/', function(req, res){
+        var name = encodeURI(req.params.player);
+        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/:version/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/friends/type/mp`;
         console.log(uri);
         request.get(uri, function(error, response, body){
             if(error){
