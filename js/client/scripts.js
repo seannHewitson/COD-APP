@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(){
         name.className = 'name';
         name.innerHTML = player.name;
         var plat = document.createElement('span');
-        plat.className = player.platform == 'xbl' ? 'fab fa-xbox' : player.platform == 'psn' ? 'fab fa-playstation' : 'fab fa-windows';
+        plat.className = player.platform == 'xbl' ? 'fab fa-xbox' : player.platform == 'psn' ? 'fab fa-playstation' : 'fab fa-battle-net';
         name.appendChild(plat);
         li.appendChild(name);
         var gamertag = document.createElement('div');
