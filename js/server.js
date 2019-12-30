@@ -75,7 +75,6 @@ function getStats(){
       } else {
         var data = JSON.parse(response.body).data;
         if(data){
-          console.log(data);
           if(data.lifetime){
             if(data.lifetime.all){
               var lifetime = data.lifetime.all;
@@ -94,11 +93,9 @@ function getStats(){
               headshots: lifetime.properties.headshots,
               assist: lifetime.properties.assists,
             });
-            }
-          }
-        } else {
-          console.log("Error retrieving data...");
-        }
+            } else { console.log("Could not find all for: " + player.name);}
+          } else { console.log("Could not find lifetime for: " + player.name);}
+        } else { console.log("Could not find data for: " + player.name);}
       }
     });
   });
