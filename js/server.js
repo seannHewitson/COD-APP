@@ -2,24 +2,27 @@
 var app = require(__dirname + '/app');
 var request = require('request');
 var https = require('https');
+var http = require('http');
 var path = require('path');
 var fs = require('fs');
 
 //  Set Server port
-var port = 443;
+var port = 80;
 app.set('port', port);
 
 //  Create Server
-var server = https.createServer({
-  key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
-  cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
-}, app);
+// var server = https.createServer({
+//   key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
+//   cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
+// }, app);
+
+app.listen(port, '0.0.0.0');
 
 
 var players = [
   {name: 'Sean Hewitson', platform: 'xbl', ign: 'SeannnKiely'},
-  // {name: 'David Shipley', platform: 'xbl', ign: 'DShipley93'},
-  // {name: 'Zack Butcher', platform: 'xbl', ign: 'Buttcher97'},
+  {name: 'David Shipley', platform: 'xbl', ign: 'DShipley93'},
+  {name: 'Zack Butcher', platform: 'xbl', ign: 'Buttcher97'},
   // {name: 'Jamie Cox', platform: 'battle', ign: ''},
   // {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
   // {name: 'Jamie Collins', platform: 'xbl', ign: ''},
@@ -27,11 +30,36 @@ var players = [
   // {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: ''}
 ];
 
-var stats = getStats();
+var stats = getStatsTest();
 
 setTimeout(function(){
-  stats = getStats();
+  stats = getStatsTest();
 }, 60000);
+
+function getStatsTest(){
+  stats = [];
+  players.forEach(function(player){
+    var data = require(path.resolve(__dirname + '/../response.json'));
+    var lifetime = data.lifetime.all;
+    //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
+    return stats.push({
+      name: player.name,
+      gamertag: data.username,
+      platform: player.platform,
+      level: data.level,
+      kills: lifetime.properties.kills,
+      deaths: lifetime.properties.deaths,
+      kdRatio: lifetime.properties.kdRatio,
+      hits: lifetime.properties.hits,
+      misses: lifetime.properties.misses,
+      scorePerMin: lifetime.properties.scorePerMinute,
+      headshots: lifetime.properties.headshots,
+      assist: lifetime.properties.assists,
+    });
+  });
+
+  return stats;
+}
 
 function getStats(){
   stats = [];
