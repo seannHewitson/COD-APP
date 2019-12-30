@@ -14,7 +14,7 @@ global.version = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
 global.root_path = path.resolve(__dirname + "/../");
 global.port = 443;   // For HTTPS
 
-console.log('Launching Odyssey.tv '.cyan + `v${global.version}`.yellow);
+console.log('Launching Cod App'.cyan + `v${global.version}`.yellow);
 
 //  Declare publicly accessable folders
 app.use('/js', express.static(path.resolve(global.root_path + '/js/client')));
