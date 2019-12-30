@@ -26,8 +26,8 @@ var players = [
   {name: 'David Shipley', platform: 'xbl', ign: 'DShipley93'},
   {name: 'Zack Butcher', platform: 'xbl', ign: 'Buttcher97'},
   // {name: 'Jamie Cox', platform: 'battle', ign: ''},
-  // {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
-  // {name: 'Jamie Collins', platform: 'xbl', ign: ''},
+  {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
+  {name: 'Jamie Collins', platform: 'xbl', ign: 'JamieCollins95'},
   {name: 'Donald Bury', plattform: 'battle', ign: 'Don5ki#2623'},
   // {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: ''}
 ];
