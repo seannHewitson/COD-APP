@@ -34,7 +34,7 @@ module.exports = function(){
 
     router.use('/Friends/:platform/:player/', function(req, res){
         var name = encodeURI(req.params.player);
-        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/:version/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/friends/type/mp`;
+        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/friends/type/mp`;
         console.log(uri);
         request.get(uri, function(error, response, body){
             if(error){

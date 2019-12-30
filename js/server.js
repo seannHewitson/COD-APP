@@ -67,7 +67,7 @@ function getStats(){
   stats = [];
   players.forEach(function(player){
     var name = encodeURI(player.ign);
-    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${player.platform}/gamer/${name}/profile/type/mp`;
+    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/type/mp`;
     request.get(uri, function(err, response, body){
       if(err){
         console.log(`${err}`.red);
