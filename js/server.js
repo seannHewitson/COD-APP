@@ -7,7 +7,7 @@ var path = require('path');
 var fs = require('fs');
 
 //  Set Server port
-var port = 80;
+var port = 1337;
 app.set('port', port);
 
 //  Create Server
@@ -16,7 +16,9 @@ app.set('port', port);
 //   cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
 // }, app);
 
-app.listen(port, '0.0.0.0');
+var server = http.createServer(app);
+
+// app.listen(port, '0.0.0.0');
 
 
 var players = [
