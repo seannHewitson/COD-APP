@@ -44,7 +44,7 @@
     }
     var btnSearch = document.getElementsByClassName('btnSearch')[0];
     btnSearch.onclick = function(){
-        if(txtGamertag.trim() != ''){
+        if(txtGamertag.value.trim() != ''){
             var name = encodeURI(txtGamertag.value).replace('#', '%23');
             var selected = platforms.getElementsByClassName('selected')[0];
             window.location.href = `/User/${selected.getAttribute('data-val')}/${name}`;
