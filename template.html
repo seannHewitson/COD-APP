@@ -1,0 +1,312 @@
+<html>
+    <head>
+        <title>Test Page.</title>
+        <meta name="google" content="notranslate">
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" rel="stylesheet">
+        <link rel='stylesheet' type='text/css' href='https://use.fontawesome.com/releases/v5.8.0/css/all.css'/>
+        <style>
+/* Reset CSS */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+a, img, b, u, i, center, ol, ul, li, form, label,
+article,
+footer, header, hgroup, menu, nav, section{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+html{	font-size:16px;	}
+
+body{
+    color:white;
+    background:#3A3A3D;
+	font-family:Titillium Web, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    max-width:100vw;
+    overflow-x:hidden;
+}
+
+  ::-webkit-scrollbar{
+        width:5px;
+        height:5px;
+    }
+
+/* Track */
+::-webkit-scrollbar-track{
+  background:#29292E;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb{
+  background:#19191D;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:#19191D;
+}
+
+
+.flo-l{ float:left; }
+.flo-n{ float:none; }
+.flo-r{ float:right; }
+
+nav{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    line-height:3.5rem;
+    background:#18181F;
+    color:white;
+    box-shadow:-1px 1px 5px 1px black;
+    border-bottom:1px solid #52BAFE;
+    z-index:101;
+}
+nav.menu{
+    top:0;
+    box-shadow:1px 3px 4px -1px black;
+    z-index:100;
+}
+nav.menu.show{
+    top:calc(3.5rem + 4px);
+}
+nav.menu li:hover{
+    background:rgba(100, 100, 100, .25);
+}
+nav ul{
+    position:relative;
+    display:block;
+    list-style:none;
+    /*text-align:center;*/
+}
+nav ul li{
+    position:relative;
+    display:inline-block;
+    text-align:center;
+    min-width:7.5rem;
+}
+nav ul li.flo-r{    text-align:left;    }
+nav ul li a{
+    position:relative;
+    display:block;
+    text-transform:uppercase;
+    font-size:13px;
+    color:white;
+    text-decoration:none;
+}
+nav ul li a:hover{
+    color:#52BAFE;
+}
+nav ul li.icons a, .searchbar a{
+    display:inline-block;
+    padding:0 .25rem;
+    margin:0 0.125rem;
+}
+nav ul li.icons{
+    z-index:999;
+}
+nav ul li.icons a:hover, nav ul li.icons a.selected{ color:#52BAFE;  }
+nav ul li.icons a i{    font-size:1.2rem;   }
+nav ul li a .title{ margin-left:1.2rem; }
+nav ul li.flo-l a .title{   margin-left:1.25rem;    }
+nav ul li.flo-r a .title{   margin-right:1.25rem;    }
+
+
+/*  Hamburger Icon  */
+.hamburger{
+    position:absolute;
+    width:1.25rem;
+    height:0.125rem;
+    top:50%;
+    transform:translateY(-50%);
+    left:1rem;
+    background:white;
+}
+.hamburger:before, .hamburger:after{
+    content:'';
+    position:absolute;
+    top:-.4375rem;
+    right:0;
+    width:50%;
+    height:0.125rem;
+    background:white;
+}
+.hamburger:after{   top:0.4375rem;left:0;   }
+li.show .hamburger{ transform:translateY(-50%) rotate(45deg);background:#52BAFE;   }
+li.show .hamburger:before, li.show .hamburger:after{
+top:-.3125rem;right:.3125rem;transform:rotate(-90deg);background:#52BAFE;}
+li.show .hamburger:after{  top:.3125rem;left:.3125rem; }
+li:hover .hamburger, li:hover .hamburger:before, li:hover .hamburger:after{ background:#52BAFE; }
+
+/*  Search Icon */
+.searchbar{ position:relative;margin-right:1rem;height:3.5rem;background:rgba(100, 100, 100, .25);padding-right:.5rem;  }
+.searchbar input{
+    position:relative;
+    padding:0;
+    max-width:100%;
+    width:20rem;
+    color:white;
+    padding-left:1rem;
+    padding-right:3rem;
+    margin:0;
+    background:none;
+    outline:none;
+    border:none;
+    font-size:1.5rem;
+    padding-top:1rem;
+    line-height:2.5rem;
+}
+.searchbar label{
+    position:absolute;
+    width:calc(100% - 1.5rem);
+    top:0;
+    left:0;
+    padding-left:1rem;
+    text-transform:uppercase;
+    line-height:1.5rem;
+    font-size:0.8125rem;
+    cursor:pointer;
+}
+.search:before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:1.75rem;
+    right:.7rem;
+    transform:translateY(-50%) rotate(-45deg);
+    border:0.125rem solid white;
+    border-radius: 100%;
+    height:1.25rem;
+    width:1.25rem;
+}
+.search:after{
+    content: '';
+    display: block;
+    border:.0625rem solid white;
+    position: absolute;
+    top:2.35rem;
+    right:.3rem;
+    width:.5rem;
+    transform: rotate(45deg);
+    transition: all 0.3s;
+}
+.btnSearch{
+    position:absolute;
+    line-height:3.5rem;
+    right:0;
+    width:2rem;
+    text-align:center;
+}
+.btnSearch:hover .search:after, .btnSearch:hover .search:before{
+    border-color:#52BAFE;
+}
+.searchbar:hover a{ color:#52BAFE;  }
+
+
+.list{			position:relative; list-style:none; width:100%;	}
+.list li{			position:relative; display:block;	}
+.list.hor{		display:block; width:100%;	}
+.list.hor > li{		display:inline-block;	}
+.list.stretch{	display:table;	}
+.list.stretch > li{	display:table-cell;	}
+
+
+
+
+
+/*  Animation Class */
+.anim, .animall, .animall:after, .animall:before{
+    transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -o-transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -ms-transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -moz-transition:300ms cubic-bezier(.4, 0, .2, 1);
+    -webkit-transition:300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+@media only screen and (max-width: 600px){
+  .mobile{
+      width:200%;
+  }
+  nav.menu{
+      overflow-x:scroll;
+      -webkit-overflow-scrolling: touch;
+      width:100%;
+  }
+
+}
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li class='menubtn'>
+                    <a href='javascript:void(0)' class='anim'>
+                        <span class='hamburger animall'></span>
+                        <span class='title'>Menu</span>
+                    </a>
+                </li>
+                <li class='flo-r icons'>
+                    <a href='javascript:void(0)' class='selected anim' data-val='xbl'><i class='fab fa-xbox'>&nbsp;</i>&nbsp;</a>
+                    <a href='javascript:void(0)' class='anim' data-val='psn'><i class='fab fa-playstation'>&nbsp;</i>&nbsp;</a>
+                    <a href='javascript:void(0)' class='anim' data-val='battle'><i class='fab fa-battle-net'>&nbsp;</i>&nbsp;</a>
+                </li><li class='flo-r searchbar'>
+                    <a href='javascript:void(0)'>
+                        <input type='text' id='txtGamertag' value='' onchange="this.setAttribute('value', this.value);" />
+                        <label for='txtGamertag'>Gamertag</label>
+                    </a><a href='javascript:void(0)' class='btnSearch'>
+                        <i class='search'>&nbsp;</i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class='menu anim'>
+            <ul class='list stretch mobile'>
+                <li class='anim'><a href='javascript:void(0)'>Option 1</a></li>
+                <li class='anim'><a href='javascript:void(0)'>Option 2</a></li>
+                <li class='anim'><a href='javascript:void(0)'>Option 3</a></li>
+                <li class='anim'><a href='javascript:void(0)'>Option 4</a></li>
+                <li class='anim'><a href='javascript:void(0)'>Option 5</a></li>
+            </ul>
+        </nav>
+        
+        
+        
+        <script>
+            var platforms = document.getElementsByClassName('icons')[0];
+            var platform = platforms.getElementsByTagName('a');
+            for(var i = 0; i < platform.length; i++){
+                platform[i].onclick = function(){
+                    var selected = platforms.getElementsByClassName('selected')[0];
+                    selected.classList.remove('selected');
+                    this.classList.add('selected');
+                }
+            }
+            var btnSearch = document.getElementsByClassName('btnSearch')[0];
+            btnSearch.onclick = function(){
+                if(txtGamertag.trim() != ''){
+                    var name = encodeURI(txtGamertag.value).replace('#', '%23');
+                    var selected = platforms.getElementsByClassName('selected')[0];
+                    window.location.href = `/User/${selected.getAttribute('data-val')}/${name}`;
+                }
+            }
+            var menubtn = document.getElementsByClassName('menubtn')[0];
+            menubtn.onclick = function(){
+                var menu = document.getElementsByClassName('menu')[0];
+                if(menu.classList.contains('show')){
+                    menu.classList.remove('show');
+                    this.classList.remove('show');
+                } else {
+                    menu.classList.add('show');
+                    this.classList.add('show');
+                }
+            }
+        </script>
+    </body>
+</html>

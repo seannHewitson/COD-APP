@@ -41,6 +41,9 @@ app.use(session({
 // Routes
 app.use('/', require('../routes/index')());
 
+// User pages.
+app.use('/User', require('../routes/User')());
+
 app.use('/API', require('../routes/API')());
 
 // Error Handling
