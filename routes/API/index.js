@@ -11,7 +11,7 @@ module.exports = function(){
 
     router.get('/Stats/:platform/:player/', function(req, res){
         var gamertag = encodeURI(req.params.player);
-        var uri = getAPIString('stats', platform, gamertag);
+        var uri = getAPIString('stats', req.params.platform, gamertag);
         request.get(uri, function(err, response, body){
             if(err)
                 return res.send(err);
@@ -21,7 +21,7 @@ module.exports = function(){
 
     router.get('/Friends/:platform/:player/', function(req, res){
         var gamertag = encodeURI(req.params.player);
-        var uri = getAPIString('stats', platform, gamertag).replace('/profile/type', '/profile/friends/type');
+        var uri = getAPIString('stats', req.params.platform, gamertag).replace('/profile/type', '/profile/friends/type');
         request.get(uri, function(err, response, body){
             if(err)
                 return res.send(err);
@@ -30,7 +30,7 @@ module.exports = function(){
     });
 
     router.get('/Maps/:platform/', function(req, res){
-        var uri = getAPIString('ce', platform).replace('/profile/type', '/profile/friends/type');
+        var uri = getAPIString('ce', req.params.platform).replace('/profile/type', '/profile/friends/type');
         request.get(uri, function(err, response, body){
             if(err)
                 return res.send(err);
