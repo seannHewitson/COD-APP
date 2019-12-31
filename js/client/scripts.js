@@ -57,7 +57,7 @@ function buildPlayerCard(player){
     platform.className = 'platform ';
     // console.log(player.platform);
     var icon = document.createElement('i');
-    icon.className = 'fab ' + (player.platform == 'xbl' ? 'fa-battle-net' : player.platform == 'psn' ? 'fa-playstation' : 'fa-battle-net');
+    icon.className = 'fab ' + (player.platform == 'xbl' ? 'fa-xbox' : player.platform == 'psn' ? 'fa-playstation' : 'fa-battle-net');
     platform.appendChild(icon);
     name.appendChild(platform);
     //  Second Row - Basic Stats(Rank, Kills, Deaths, Ratio, Score Per Min, Accuracy)
