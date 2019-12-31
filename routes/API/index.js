@@ -1,54 +1,99 @@
-//  API Index route to be used for page requests (Searches, Autocomplete, Dropdowns ect.)
-
 module.exports = function(){
-    //  Dependencies
     var router = require('express').Router();
     var request = require('request');
-    var path = require('path');
+    
+    var UTKN = null;
+    var RTKN = null;
+
     router.get('/', function(req, res, next){
-        //  Redirect to main page?
-        var obj = {key: "value"};
-        res.send(JSON.stringify(obj));
+        res.send("Hello?<br>Looks like someone hit the wrong page....");
     });
-    // var player = [
-    //     {name: 'Sean', platform: 'xbl', ign: 'SeannnKiely'},
-    //     {name: 'Dave', platform: 'xbl', ign: 'DShipley93'},
-    // ];
-    
-      
 
-    router.use('/:platform/:player/', function(req, res){
-        var name = encodeURI(req.params.player);
-        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/type/mp`;
-        console.log(uri);
-        request.get(uri, function(error, response, body){
-            if(error){
-                var obj = {error: "Please specify an autocomplete type."};
-                res.send(JSON.stringify(obj));
-            } else {
-                // level, 
-                res.send(response.body);
-            }
+    router.get('/Stats/:platform/:player/', function(req, res){
+        var gamertag = encodeURI(req.params.player);
+        var uri = getAPIString('stats', platform, gamertag);
+        request.get(uri, function(err, response, body){
+            if(err)
+                return res.send(err);
+            res.send(response.body);
         });
     });
 
-    router.use('/Friends/:platform/:player/', function(req, res){
-        var name = encodeURI(req.params.player);
-        var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${req.params.platform}/gamer/${name.replace('#', '%23')}/profile/friends/type/mp`;
-        console.log(uri);
-        request.get(uri, function(error, response, body){
-            if(error){
-                var obj = {error: "Please specify an autocomplete type."};
-                res.send(JSON.stringify(obj));
-            } else {
-                // level, 
-                res.send(response.body);
-            }
+    router.get('/Friends/:platform/:player/', function(req, res){
+        var gamertag = encodeURI(req.params.player);
+        var uri = getAPIString('stats', platform, gamertag).replace('/profile/type', '/profile/friends/type');
+        request.get(uri, function(err, response, body){
+            if(err)
+                return res.send(err);
+            res.send(response.body);
         });
     });
-    
-    // For Creating New DOM Elements on the web pages.
-    // router.use('/GetDom', require('./GetDom')());
+
+    router.get('/Maps/:platform/', function(req, res){
+        var uri = getAPIString('ce', platform).replace('/profile/type', '/profile/friends/type');
+        request.get(uri, function(err, response, body){
+            if(err)
+                return res.send(err);
+            res.send(response.body);
+        });
+    });
+
+
+    router.get('/Auth/', function(req, res){
+        var uri = 'https://profile.callofduty.com/cod/login';
+        request.get(uri, function(err, response, body){
+            if(err)
+                return res.send(err);
+            res.send(response);
+        });
+    });
+
+    // router.get('/Recents/:platform/:player/', function(req, res){
+    //     var gamertag = encodeURI(req.params.player);
+    //     var uri = getAPIString('crm', platform, gamertag).replace('/profile/type', '/profile/friends/type');
+    //     //  request post.
+    //     if(UTKN == null || RTKN == null){
+    //         authenticate();
+    //     }
+    //     request.get({
+    //         headers: {'Cookie': `utkn=${UTKN}; rtkn=${RTKN};`},
+    //         url: uri
+    //     });
+
+
+    //     request.get(uri, function(err, response, body){
+    //         if(err)
+    //             return res.send(err);
+    //         res.send(response.body);
+    //     });
+    // });
+
+    function getAPIString(type, platform, gamertag = null){
+        //  Possible types: stats, ce, crm, 
+        var base = `https://my.callofduty.com/api/papi-client/${type}/v1/title/mw/platform/${platform}/`;
+        if(type == "ce")    base += "gameType/mp/communityMapData/availability";
+        else {
+            if(gamertag != null)
+                base += `gamer/${gamertag.replace('#', '%23')}`;
+            if(type == "stats")
+                base += "/profile/type/mp";
+            else base += "matches/mp/start/0/end/0/details?";
+            //first 0 is start second is end
+            //  "utcStartSeconds": 1574621539,
+            //  "utcEndSeconds": 1574622145,
+        }
+        return base;
+    };
+
+    function authenticate(){
+        //  Get CSRF-Token -> Get Auth token.
+        request.get('https://profile.callofduty.com/cod/login', function(error, response){
+            if(error)   return error;
+            return response;
+        });
+        // authToken = result;
+    };
 
     return router;
 };
+
