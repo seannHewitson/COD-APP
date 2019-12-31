@@ -1,16 +1,64 @@
 <nav>
     <ul>
-        <!-- <li class='flo-l'><a href='javascript:void(0)'>
-            <span class='hamburger'></span>
-            <span class='title'>Menu</span>
-        </a></li><li class='flo-r'><a href='javascript:void(0)'>
-            <span class='title'>Login</span>
-            <span class='fa fa-user-secret' style='font-size:1.25rem'>&nbsp;</span>
-        </a></li> -->
-        <li class='flo-r searchbar'><a href='javascript:void(0)'>
-            <input type='text' class='autocomplete' id='txtSearch' data-source='Players' value='' onchange="this.setAttribute('value', this.value);" />
-            <label for='txtSearch' class='search'>Search</label>
-            <ul class='autocompleteresults'></ul>
-        </a></li>
+        <li class='menubtn'>
+            <a href='javascript:void(0)' class='anim'>
+                <span class='hamburger animall'></span>
+                <span class='title'>Menu</span>
+            </a>
+        </li>
+        <li class='flo-r icons'>
+            <a href='javascript:void(0)' class='selected anim' data-val='xbl'><i class='fab fa-xbox'>&nbsp;</i>&nbsp;</a>
+            <a href='javascript:void(0)' class='anim' data-val='psn'><i class='fab fa-playstation'>&nbsp;</i>&nbsp;</a>
+            <a href='javascript:void(0)' class='anim' data-val='battle'><i class='fab fa-battle-net'>&nbsp;</i>&nbsp;</a>
+        </li><li class='flo-r searchbar'>
+            <a href='javascript:void(0)'>
+                <input type='text' id='txtGamertag' value='' onchange="this.setAttribute('value', this.value);" />
+                <label for='txtGamertag'>Gamertag</label>
+            </a><a href='javascript:void(0)' class='btnSearch'>
+                <i class='search'>&nbsp;</i>
+            </a>
+        </li>
     </ul>
 </nav>
+<nav class='menu anim'>
+    <ul class='list stretch mobile'>
+        <li class='anim'><a href='javascript:void(0)'>Option 1</a></li>
+        <li class='anim'><a href='javascript:void(0)'>Option 2</a></li>
+        <li class='anim'><a href='javascript:void(0)'>Option 3</a></li>
+        <li class='anim'><a href='javascript:void(0)'>Option 4</a></li>
+        <li class='anim'><a href='javascript:void(0)'>Option 5</a></li>
+    </ul>
+</nav>
+
+
+
+<script>
+    var platforms = document.getElementsByClassName('icons')[0];
+    var platform = platforms.getElementsByTagName('a');
+    for(var i = 0; i < platform.length; i++){
+        platform[i].onclick = function(){
+            var selected = platforms.getElementsByClassName('selected')[0];
+            selected.classList.remove('selected');
+            this.classList.add('selected');
+        }
+    }
+    var btnSearch = document.getElementsByClassName('btnSearch')[0];
+    btnSearch.onclick = function(){
+        if(txtGamertag.trim() != ''){
+            var name = encodeURI(txtGamertag.value).replace('#', '%23');
+            var selected = platforms.getElementsByClassName('selected')[0];
+            window.location.href = `/User/${selected.getAttribute('data-val')}/${name}`;
+        }
+    }
+    var menubtn = document.getElementsByClassName('menubtn')[0];
+    menubtn.onclick = function(){
+        var menu = document.getElementsByClassName('menu')[0];
+        if(menu.classList.contains('show')){
+            menu.classList.remove('show');
+            this.classList.remove('show');
+        } else {
+            menu.classList.add('show');
+            this.classList.add('show');
+        }
+    }
+</script>
