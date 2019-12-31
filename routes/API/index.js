@@ -2,6 +2,7 @@ module.exports = function(){
     var router = require('express').Router();
     var request = require('request');
     
+    var XSRF = 'XOXknnBMkIsl6Fz0HPOAAKNadbL1oTXqeqaWF7ubJRWXYuJmyVhjEnT6-Twi2He5';
     var UTKN = null;
     var RTKN = null;
 
@@ -44,7 +45,7 @@ module.exports = function(){
         request.get(uri, function(err, response, body){
             if(err)
                 return res.send(err);
-            res.send(response);
+            res.send(response.body);
         });
     });
 

@@ -29,7 +29,7 @@ var players = [
   {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
   {name: 'Jamie Collins', platform: 'xbl', ign: 'JamieCollins95'},
   {name: 'Donald Bury', platform: 'battle', ign: 'Don5ki#2623'},
-  // {name: 'Mindaugas Lukosevicius', platform: 'battle', ign: ''}
+  {name: 'Mindaugas Lukosevicius', platform: 'uno', ign: 'Minluko#9735505'}
 ];
 
 var stats = getStats();
