@@ -70,7 +70,7 @@ module.exports = function(){
 
     function getAPIString(type, platform, gamertag = null){
         //  Possible types: stats, ce, crm, 
-        var base = `https://my.callofduty.com/api/papi-client/${type}/v1/title/mw/platform/${platform}/`;
+        var base = `https://my.callofduty.com/api/papi-client/${type}/cod/v1/title/mw/platform/${platform}/`;
         if(type == "ce")    base += "gameType/mp/communityMapData/availability";
         else {
             if(gamertag != null)
