@@ -6,12 +6,10 @@ module.exports = function(){
         res.send("Hello?<br>Looks like someone hit the wrong page....");
     });
 
-    router.get('/Stats/:platform/:player/', function(req, res){
-        var gamertag = encodeURI(req.params.player);
-        var uri = getAPIString('stats', req.params.platform, gamertag);
-        request.get(uri, function(err, response, body){
-            if(err)
-                return res.send(err);
+    router.get('/:platform/:player/', function(req, res){
+        var gamertag = encodeURI(req.params.player).replace('#', '%23');
+        request.get(`/API/Stats/${req.params.platform}/${gamertag}`, function(err, response, body){
+            if(err) return res.send(err);
             res.send(response.body);
         });
     });
