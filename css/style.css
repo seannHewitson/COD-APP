@@ -201,7 +201,7 @@ li:hover .hamburger, li:hover .hamburger:before, li:hover .hamburger:after{ back
 /*  Page content    */
 .content{
     position:relative;
-    /* margin-top:3.5rem; */
+    margin-top:3.5rem;
     padding:1.25rem;
     width:calc(100% - 2.5rem);
     /* min-height:calc(100% - 4rem); */
