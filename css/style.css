@@ -24,7 +24,7 @@ body{
 .flo-r{ float:right; }
 
 nav{
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     width:100%;
@@ -208,6 +208,9 @@ li:hover .hamburger, li:hover .hamburger:before, li:hover .hamburger:after{ back
     overflow-x:hidden;
     text-align:center;
 }
+.content.show{
+    margin-top:7rem;
+}
 .content h1{
     margin-bottom:.5rem;
     text-shadow:0px 0px 3px black;
@@ -365,7 +368,7 @@ ul.players > li, ul.stats > li{
     text-align:left;
     cursor:pointer;
     /* width:250px; */
-    width:calc(25% - 40px);
+    /* width:calc(25% - 40px); */
 }
 ul.players > li{
     border-left:2px solid #FF3D3D;
@@ -451,7 +454,7 @@ h1, h2{
     text-shadow:0px 0px 5px #19191E;
     font-family: 'Lobster', cursive;
 }
-h1:after, h2:after,
+/* h1:after, h2:after,
 h1:before, h2:before{
     content:'';
     display:block;
@@ -468,12 +471,12 @@ h1:before, h2:before{
 h1:before, h2:before{
     left:auto;
     right:-5px;
-}
+} */
 h2{
     font-size:2rem;
     z-index:1;
 }
-h2:before,
+/* h2:before,
 h2:after{
     left:0;
     width:calc(40% - 110px);
@@ -481,7 +484,7 @@ h2:after{
 h2:before{
     left:auto;
     right:0;
-}
+} */
 
 .statsSection .statsBox{
     position: relative;

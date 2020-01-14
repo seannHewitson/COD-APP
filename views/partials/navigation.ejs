@@ -53,11 +53,14 @@
     var menubtn = document.getElementsByClassName('menubtn')[0];
     menubtn.onclick = function(){
         var menu = document.getElementsByClassName('menu')[0];
+        var content = document.getElementsByClassName('content')[0];
         if(menu.classList.contains('show')){
             menu.classList.remove('show');
+            content.classList.remove('show');
             this.classList.remove('show');
         } else {
             menu.classList.add('show');
+            content.classList.add('show');
             this.classList.add('show');
         }
     }

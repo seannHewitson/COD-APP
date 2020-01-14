@@ -1,32 +1,103 @@
+<%
+    function getIcon(plat){
+        return plat == 'xbl' ? 'xbox' : plat == 'psn' ? 'playstation' : 'battle-net';
+    }
+    function getPlat(plat){
+        return plat == 'xbl' ? 'XBOX' : plat == 'psn' ? 'Playstation' : plat == 'battle' ? 'Battle Net' : 'Activision';
+    }
+%>
 <html>
     <head>
         <%- include('partials/head'); %>
     </head>
     <body>
         <%- include('partials/navigation'); %>
-        <div class='content'>
+        <div class='content anim'>
             <div class='playersSection'>
-            <h1>Players</h1>
-                <ul class='list hor players'>
-                    <li class='active'>
-                        <div class='name'>
-                            Sean Hewitson
-                            <span class='fab fa-xbox'></span>
-                            <!-- <span class='fas fa-mouse'></span>
-                            <span class='fab fa-playstation'></span> -->
-                        </div><div class='gamertag'>
-                            SeannnKiely
-                            <span class='rank'>32</span>
-                        </div>
-                    </li>
-                    <li>Player Two</li>
-                    <li>Player Three</li>
-                    <li>Player Four</li>
-                    <li>Player Five</li>
-                    <li>Player Six</li>
-                </ul>
+                <h1>Totals / Averages</h1>
+                <table>
+                    <tr>
+                        <th>Player</th>
+                        <th>Level</th>
+                        <th>Kills</th>
+                        <th>Deaths</th>
+                        <th>KD Ratio</th>
+                        <th>Hits</th>
+                        <th>Misses</th>
+                        <th>SPM</th>
+                        <th>Headshots</th>
+                        <th>Assists</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>WL Ratio</th>
+                        <th>Games Played</th>
+                    </tr>
+                    <div id='playerCard'>
+                    <% players.forEach(function(player){ %>
+                    <tr>
+                        <td><i class='fab fa-<%= getIcon(player.platform) %>' title='<%= getPlat(player.platform) %>'>&nbsp;</i><%= player.name %> - <%= player.gamertag %></td>
+                        <td><%= player.level %></td>
+                        <td><%= player.kills.toLocaleString() %></td>
+                        <td><%= player.deaths.toLocaleString() %></td>
+                        <td><%= player.kdRatio.toFixed(2) %></td>
+                        <td><%= player.hits.toLocaleString() %></td>
+                        <td><%= player.misses.toLocaleString() %></td>
+                        <td><%= player.scorePerMin.toFixed(2) %></td>
+                        <td><%= player.headshots.toLocaleString() %></td>
+                        <td><%= player.assist.toLocaleString() %></td>
+                        <td><%= player.wins.toLocaleString() %></td>
+                        <td><%= player.losses.toLocaleString() %></td>
+                        <td><%= player.WLRatio.toFixed(2) %></td>
+                        <td><%= player.played.toLocaleString() %></td>
+                    </tr>
+                    <% }); %>
+                    </div>
+                </table>
+                    <!-- <ul class='list players'>
+                        <li class='active'>
+                            <div class='name'>
+                                Sean Hewitson
+                                <span class='fab fa-xbox'></span>
+                                <!-- <span class='fas fa-mouse'></span>
+                                <span class='fab fa-playstation'></span> -
+                            </div><div class='gamertag'>
+                                SeannnKiely
+                                <span class='rank'>32</span>
+                            </div>
+                        </li>
+                        <li>Player Two</li>
+                        <li>Player Three</li>
+                        <li>Player Four</li>
+                        <li>Player Five</li>
+                        <li>Player Six</li>
+                    </ul> -->
+                </div>
+                <div class='playersSection'>
+            <h1>Personal Bests / Worsts</h1>
+            <table>
+                <tr>
+                    <th>Player</th>
+                    <th>Best Kills</th>
+                    <th>Worst Deaths</th>
+                    <th>Best SPM</th>
+                    <th>Best Score</th>
+                    <th>Best Killstreak</th>
+                    <th>Best Winstreak</th>
+                </tr>
+                <% players.forEach(function(player){ %>
+                <tr>
+                    <td><%= player.name %></td>
+                    <td><%= player.bestKills %></td>
+                    <td><%= player.worstDeaths %></td>
+                    <td><%= player.bestSPM.toLocaleString() %></td>
+                    <td><%= player.bestScore.toLocaleString() %></td>
+                    <td><%= player.bestKillstreak %></td>
+                    <td><%= player.bestWinStreak %></td>
+                </tr>
+                <% }); %>
+            </table>
             </div>
-            <div class='statsSection'>
+            <!--<div class='statsSection'>
                 <h1 id='statsTitle'>Sean's Stats'</h1>
                 <div class='statsBox'>
                     <div class='statsItems'>
@@ -39,18 +110,18 @@
                         <li>Option 5</li>
                         <li>Option 6</li>
                     </ul>
-                        <!-- Kills deaths ect -->
+                        <!-- Kills deaths ect -
                     </div><div class='statsItems'>
                         <h2>Gametypes & Weapons</h2>
                         <ul class='list othercolor' id='gwStats'></ul>
-                        <!-- Weapons & Gamemodes -->
+                        <!-- Weapons & Gamemodes -
                     </div><div class='statsItems'>
                         <h2>Last Game</h2>
                         <ul class='list othercolor' id='lastStats'></ul>
-                        <!-- Last Game -->
+                        <!-- Last Game -
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>

@@ -8,149 +8,23 @@ var fs = require('fs');
 
 //  Set Server port
 var port = process.env.PORT == null ? 1337 : process.env.PORT;
+port = 443;
 app.set('port', port);
 
 //  Create Server
-// var server = https.createServer({
-//   key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
-//   cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
-// }, app);
+var server = https.createServer({
+  key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
+  cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
+}, app);
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
 // app.listen(port, '0.0.0.0');
 
 
-var players = [
-  {name: 'Sean Hewitson', platform: 'xbl', ign: 'SeannnKiely'},
-  {name: 'David Shipley', platform: 'xbl', ign: 'DShipley93'},
-  {name: 'Zack Butcher', platform: 'xbl', ign: 'Buttcher97'},
-  {name: 'Jamie Cox', platform: 'battle', ign: 'cnc96#2904'},
-  {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
-  {name: 'Jamie Collins', platform: 'xbl', ign: 'JamieCollins95'},
-  {name: 'Donald Bury', platform: 'battle', ign: 'Don5ki#2623'},
-  {name: 'Mindaugas Lukosevicius', platform: 'uno', ign: 'Minluko#9735505'}
-];
 
-var stats = getStats();
 
-// setTimeout(function(){
-//   stats = getStats();
-// }, 60000);
 
-function getStatsTest(){
-  stats = [];
-  players.forEach(function(player){
-    var data = require(path.resolve(__dirname + '/../response.json'));
-    var lifetime = data.lifetime.all;
-    //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
-    return stats.push({
-      name: player.name,
-      gamertag: data.username,
-      platform: player.platform,
-      level: data.level,
-      kills: lifetime.properties.kills,
-      deaths: lifetime.properties.deaths,
-      kdRatio: lifetime.properties.kdRatio,
-      hits: lifetime.properties.hits,
-      misses: lifetime.properties.misses,
-      scorePerMin: lifetime.properties.scorePerMinute,
-      headshots: lifetime.properties.headshots,
-      assist: lifetime.properties.assists,
-    });
-  });
-
-  return stats;
-}
-
-function getStats(){
-  stats = [];
-  players.forEach(function(player){
-    var name = encodeURI(player.ign);
-    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${player.platform}/gamer/${player.ign.replace('#', '%23')}/profile/type/mp`;
-    // console.log(uri);
-    request.get(uri, function(err, response, body){
-      if(err){
-        console.log(`${err}`.red);
-        return {error: err};
-      } else {
-        var data = JSON.parse(response.body).data;
-        if(data){
-          if(data.lifetime){
-            if(data.lifetime.all){
-              var lifetime = data.lifetime.all;
-            //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
-            return stats.push({
-              name: player.name,
-              gamertag: data.username,
-              platform: player.platform,
-              level: data.level,
-              kills: lifetime.properties.kills,
-              deaths: lifetime.properties.deaths,
-              kdRatio: lifetime.properties.kdRatio,
-              hits: lifetime.properties.hits,
-              misses: lifetime.properties.misses,
-              scorePerMin: lifetime.properties.scorePerMinute,
-              headshots: lifetime.properties.headshots,
-              assist: lifetime.properties.assists,
-            });
-            } else { console.log("Could not find all for: " + player.name);}
-          } else { console.log("Could not find lifetime for: " + player.name);}
-        } else { console.log("Could not find data for: " + player.name);}
-      }
-    });
-  });
-
-  return stats;
-}
-
-// setInterval(function(){
-//   // console.log(stats);
-// }, 10000);
-
-//  Get base player stats.
-//   fetchStats();
-// //  Constant update player stats.
-// setInterval(fetchStats, 60000); //  Wait 1 minute before updating player stats.
-
-// var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/xbl/gamer/SeannnKiely/profile/type/mp`;
-// request.get(uri, function(error, response, body){
-//   if(error) return console.log(`${error}`.red);
-//   var data = JSON.parse(response.body);
-//   var lifetime = data.lifetime.properties
-
-//   //  Build Player Stats
-//   stats[data.username] = {
-//     info: {
-//       level: data.level,
-//       prestige: data.prestige,
-//       kills: lifetime.properties.kills,
-//       deaths: lifetime.properties.deaths,
-//       kdRatio: lifetime.properties.kdRatio,
-//       hits: lifetime.properties.hits,
-//       misses: lifetime.properties.misses,
-//       scorePerMin: lifetime.properties.scorePerMinute,
-//       headshots: lifetime.properties.headshots,
-//       assist: lifetime.properties.assists,
-//       totalXP: data.totalXp,
-//       levelXPGain: data.levelXpGained,
-//       levelXPRemain: data.levelXpRemainder,
-//       levelXPTotal: (int.parse(data.levelXpGained) + int.parse(data.levelXpRemainder)),
-//     },
-
-//   };
-//   // level:52
-//   // levelXpGained:17831
-//   // levelXpRemainder:16069
-//   // maxLevel:0
-//   // maxPrestige:0
-//   // paragonId:0
-//   // paragonRank:0
-//   // platform:"xbl"
-//   // prestige:0
-//   // prestigeId:0
-//   // title:"mw"
-// });
 
 function fetchStats(){
   // console.log("Fetching Stats");
@@ -213,7 +87,7 @@ server.on('listening', onListening);
 
 io.on('connection', function(socket){
   //  Send initial data.
-  socket.emit('listPlayers', sortArrayOfObjects(stats, 'scorePerMin'));
+  // socket.emit('listPlayers', sortArrayOfObjects(stats, 'scorePerMin'));
 
   socket.on('getStats', function(data){
     socket.emit('recievedStats', data);
