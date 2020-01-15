@@ -19,64 +19,23 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-// app.listen(port, '0.0.0.0');
+//  Players..
+var players = [
+  {name: 'Sean Hewitson', platform: 'xbl', ign: 'SeannnKiely'},
+  {name: 'David Shipley', platform: 'xbl', ign: 'DShipley93'},
+  {name: 'Zack Butcher', platform: 'xbl', ign: 'Buttcher97'},
+  {name: 'Jamie Cox', platform: 'battle', ign: 'cnc96#2904'},
+  {name: 'Chee Tse', platform: 'xbl', ign: 'neoicg'},
+  {name: 'Jamie Collins', platform: 'xbl', ign: 'JamieCollins95'},
+  {name: 'Donald Bury', platform: 'battle', ign: 'Don5ki#2623'},
+  {name: 'Mindaugas Lukosevicius', platform: 'uno', ign: 'Minluko#9735505'}
+];
 
+global.playerstats = getStats();
 
-
-
-
-
-function fetchStats(){
-  // console.log("Fetching Stats");
-  players.forEach(function(player){
-    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${player.platform}/gamer/${player.ign}/profile/type/mp`;
-    request.get(uri, function(error, response, body){
-      if(!error){
-        var resp = JSON.parse(response.body).data;
-        if(resp){
-          var lifetime = resp.lifetime.all;
-          //  Add Weekly
-          var weekly = resp.weekly.all;
-          stats[resp.username] = {
-            //  Basic
-            info: {
-              level: resp.level,
-              prestige: resp.prestige,
-              kills: lifetime.properties.kills,
-              deaths: lifetime.properties.deaths,
-              kdRatio: lifetime.properties.kdRatio,
-              hits: lifetime.properties.hits,
-              misses: lifetime.properties.misses,
-              scorePerMin: lifetime.properties.scorePerMinute,
-              headshots: lifetime.properties.headshots,
-              assist: lifetime.properties.assists,
-            },
-            best: {
-              confirms: lifetime.properties.Confirmed,
-              assists: lifetime.properties.Assists,
-              score: lifetime.properties.Score,
-              scorePerMin: lifetime.properties.SPM,
-              kdRatio: lifetime.properties.KD,
-              InfectedKills: lifetime.properties.killsKillsAsInfected,
-              stabs: lifetime.properties.Stabs,
-              survvorKills: lifetime.properties.KillsAsSurvivor,
-              rescues: lifetime.properties.Rescues,
-              plants: lifetime.properties.Plants,
-              deaths: lifetime.properties.Deaths,
-              defends: lifetime.properties.Defends,
-              kills: lifetime.properties.Kills,
-              defuses: lifetime.properties.Defuses,
-              captures: lifetime.properties.Captures,
-              killstreak: lifetime.properties.KillStreak,
-              denies: lifetime.properties.Denied
-            },
-          };
-          // console.log(resp);
-        }
-      }
-    });
-  });
-}
+setTimeout(function(){
+  global.playerstats = getStats();
+}, 60000);
 
 
 var io = require('socket.io').listen(server);
@@ -87,10 +46,10 @@ server.on('listening', onListening);
 
 io.on('connection', function(socket){
   //  Send initial data.
-  // socket.emit('listPlayers', sortArrayOfObjects(stats, 'scorePerMin'));
+  socket.emit('UPDATE_PLAYERS', global.playerstats);
 
   socket.on('getStats', function(data){
-    socket.emit('recievedStats', data);
+    socket.emit('recievedStats', global.playerstats);
   });
 });
 
@@ -126,4 +85,59 @@ function onListening(){
     var addr = server.address();
     var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
     console.log('Server Listening on ' + bind);
+}
+
+function getStats(){
+  stats = [];
+  players.forEach(function(player){
+    var uri = `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${player.platform}/gamer/${player.ign.replace('#', '%23')}/profile/type/mp`;
+    // console.log(uri);
+    request.get(uri, function(err, response, body){
+      if(err){
+        console.log(`${err}`.red);
+        return {error: err};
+      } else {
+        var data = JSON.parse(response.body).data;
+        if(data){
+          if(data.lifetime){
+            if(data.lifetime.all){
+              var lifetime = data.lifetime.all;
+            //  name, gamertag, platform, level, kills, deaths, kdRatio, scorePerMin
+            return stats.push({
+              name: player.name,
+              gamertag: data.username,
+              platform: player.platform,
+              level: data.level,
+              kills: lifetime.properties.kills,
+              deaths: lifetime.properties.deaths,
+              kdRatio: lifetime.properties.kdRatio,
+              hits: lifetime.properties.hits,
+              misses: lifetime.properties.misses,
+              scorePerMin: lifetime.properties.scorePerMinute,
+              headshots: lifetime.properties.headshots,
+              assist: lifetime.properties.assists,
+              scorePerMin: lifetime.properties.scorePerMinute,
+              bestKills: lifetime.properties.recordKillsInAMatch,
+              worstDeaths: lifetime.properties.recordDeathsInAMatch,
+              bestSPM: lifetime.properties.bestSPM,
+              bestScore: lifetime.properties.bestScore,
+              bestKillstreak: lifetime.properties.recordKillStreak,
+              levelXP: lifetime.properties.levelXpGained,
+              levelXPRemain: lifetime.properties.levelXpRemainder,
+              bestWinStreak: lifetime.properties.recordLongestWinStreak,
+              wins: lifetime.properties.wins,
+              losses: lifetime.properties.losses,
+              WLRatio: lifetime.properties.winLossRatio,
+              played: lifetime.properties.gamesPlayed,
+              XPRemain: data.levelXpRemainder,
+              XPGained: data.levelXpGained
+            });
+            } else { console.log("Could not find all for: " + player.name);}
+          } else { console.log("Could not find lifetime for: " + player.name);}
+        } else { console.log("Could not find data for: " + player.name);}
+      }
+    });
+  });
+
+  return stats;
 }
