@@ -8,7 +8,7 @@ var fs = require('fs');
 
 //  Set Server port
 var port = process.env.PORT == null ? 1337 : process.env.PORT;
-port = 443;
+// port = 443;
 app.set('port', port);
 
 //  Create Server
