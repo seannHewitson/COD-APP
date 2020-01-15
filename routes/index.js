@@ -3,6 +3,8 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
     var request = require('request');
+    var path = require('path');
+    var fs = require('fs');
     require('colors');
 
     var players = [
@@ -16,11 +18,11 @@ module.exports = function(){
         {name: 'Mindaugas Lukosevicius', platform: 'uno', ign: 'Minluko#9735505'}
      ];
       
-    var stats = getStats();
+    // var stats = getStats();
 
-    setTimeout(function(){
-        stats = getStats();
-    }, 60000);
+    // setTimeout(function(){
+    //     stats = getStats();
+    // }, 60000);
 
     router.get('/', function(req, res, next){
         res.render('index.ejs', {
@@ -28,6 +30,10 @@ module.exports = function(){
             version: global.version,
             players: stats
         });            
+    });
+
+    router.get('/Test', function(req, res, next){
+      res.send(fs.readFileSync(path.resolve(global.root_path + '/newcard.html'), {encoding: 'utf8'}));
     });
     return router;
 
