@@ -12,12 +12,12 @@ var port = process.env.PORT == null ? 1337 : process.env.PORT;
 app.set('port', port);
 
 //  Create Server
-var server = https.createServer({
-  key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
-  cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
-}, app);
+// var server = https.createServer({
+//   key: fs.readFileSync(__dirname + '/../ssl/client-key.pem'),
+//   cert: fs.readFileSync(__dirname + '/../ssl/client-cert.pem')
+// }, app);
 
-// var server = http.createServer(app);
+var server = http.createServer(app);
 
 // app.listen(port, '0.0.0.0');
 
