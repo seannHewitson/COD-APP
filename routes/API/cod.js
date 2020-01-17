@@ -13,11 +13,11 @@ function call(type, platform, gamertag = null){
     return fetch(uri)
     .then(function(response){
         console.log(response);
-        response.body.json();
+        response.json();
     })
     .then(function(response){
         console.log(response).body;
-        return response;
+        return response.body;
         const { status, data: error } = response;
         if(status !== 'success')
             throw new Error(`API Error: ${error.message}`);
