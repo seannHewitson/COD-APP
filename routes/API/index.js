@@ -1,6 +1,7 @@
 module.exports = function(){
     var router = require('express').Router();
     var request = require('request');
+    var cod = require('cod');
     
     var XSRF = 'XOXknnBMkIsl6Fz0HPOAAKNadbL1oTXqeqaWF7ubJRWXYuJmyVhjEnT6-Twi2He5';
     var UTKN = null;
@@ -18,6 +19,10 @@ module.exports = function(){
                 return res.send(err);
             res.send(response.body);
         });
+    });
+    router.get('/Test/:platform/:player/', function(req, res){
+        var gamertag = encodeURI(req.params.player);
+        res.send(cod.test(req.params.platform, gamertag));
     });
 
     router.get('/Friends/:platform/:player/', function(req, res){
