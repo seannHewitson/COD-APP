@@ -339,171 +339,74 @@ li:hover .hamburger, li:hover .hamburger:before, li:hover .hamburger:after{ back
 }
 /*  End Filters */
 
-div.players, div.stats{
-    position:relative;
-    display:inline-block;
-    width:300px;
-    margin:10px;
-    text-align:left;
-    vertical-align: text-top;
+
+.players > .list{
+    text-align:center;
 }
-div.stats{
-    text-align:right;
-    width:calc(100% - 350px);
-}
-ul.players{
-    left:50%;
-    transform:translateX(-50%);
-    text-align:left;
-    width:auto;
-}
-ul.players > li, ul.stats > li{
+.players > .list > li{
     background:#19191D;
-    padding:5px;
+    padding:15px 10px;
     padding-left:10px;
     margin:10px;
     /* height:30px; */
     height:auto;
     line-height:30px;
     text-align:left;
-    cursor:pointer;
-    /* width:250px; */
-    /* width:calc(25% - 40px); */
-}
-ul.players > li{
     border-left:2px solid #FF3D3D;
+    width:800px;
 }
-ul.players > .online{
-    border-color:#3DFF3D;
+.players > .list > li > div{
+    position:relative;
+    display:block;
 }
-ul.players li > .name{
-    position: relative;
+.players > .list > li .rank{
+    height:5px;
+    margin-top:.5rem;
+    margin-bottom:.5rem;
+    background:rgba(0, 140, 186, .4);
 }
-ul.players li > .name span{
-    position:absolute;
-    top:0;
-    right:0;
-    width:40px;
-    height:40px;
-    line-height:40px;
-    text-align:center;
-}
-ul.players li > .gamertag{
-    font-weight:lighter;
-    position: relative;
-}
-ul.players li > .gamertag .rank{
-    position:absolute;
-    top:0;
-    right:0;
-    width:40px;
-    height:40px;
-    line-height:40px;
-    text-align:center;
-    font-weight:bold;
-}
-ul.players > .active, ul.stats > .active{
-    /* height:80px; */
-    font-weight:bold;
-    color:#009DFF;
-}
-ul.players > .active:after, ul.stats > .active:after,
-ul.players > .active:before, ul.stats > .active:before{
-    content:'';
+.players > .list > li .rank .progress{
     position:absolute;
     top:0;
     left:0;
-    width:100%;
     height:100%;
-    background:radial-gradient(circle, rgba(0,157,255,1) 0%, transparent 75%);
-    opacity:.15;
+    background:rgba(0, 140, 186, 1);
 }
-ul.players > .active:after, ul.stats > .active:after{
-    top:-3px;
-    height:calc(100% + 6px);
-    opacity:.75;
-    background:linear-gradient(circle, #19191D 10% rgba(0,157,255,1) 0%, #19191D 90%);
-    z-index:-1;
-}
-ul.players .platform{
+.players > .list > li .rank .playerrank{
     position:absolute;
-    top:0;
-    right:0;
-    padding-top:5px;
+    bottom:calc(100% + 10px);
+    left:0;
+    font-weight:bold;
     text-align:center;
-    vertical-align: text-bottom;
+    width:30px;
 }
-ul.players ul li span{
-    position: relative;
+.players > .list > li .rank .playerrank.next{
+    left:auto;
+    right:0;
+}
+.players > .list > li .rank .playerrank .dataVal{
+    line-height:13px;
+    font-size:1rem;
     display:block;
+}
+.players > .list > li .rank .playerrank .dataTitle{
+    line-height:12px;
+    font-size:12px;
+    display:block;
+}
+.players ul li ul li{
     text-align:center;
+}
+.players ul li ul li > span{
+    display:block;
     line-height:1rem;
+}
+.players ul li ul li > span.dataTitle{
+    text-transform:uppercase;
+    font-size:11px;
     font-weight:bold;
 }
-ul.players ul li span.stat{
-    text-transform:uppercase;
-    font-size:.75rem;
-}
 
-h1, h2{
-    position:relative;
-    font-weight:normal;
-    font-size:3rem;
-    text-align:center;
-    color:white;
-    text-shadow:0px 0px 5px #19191E;
-    font-family: 'Lobster', cursive;
-}
-/* h1:after, h2:after,
-h1:before, h2:before{
-    content:'';
-    display:block;
-    position:absolute;
-    width:calc(50% - 110px);
-    height:2px;
-    border-radius:50%;
-    top:55%;
-    left:-5px;
-    background:white;
-    box-shadow:0px 0px 1px #19191E;
-    transform:translateY(-25%);
-}
-h1:before, h2:before{
-    left:auto;
-    right:-5px;
-} */
-h2{
-    font-size:2rem;
-    z-index:1;
-}
-/* h2:before,
-h2:after{
-    left:0;
-    width:calc(40% - 110px);
-}
-h2:before{
-    left:auto;
-    right:0;
-} */
-
-.statsSection .statsBox{
-    position: relative;
-    display:block;
-    width:100%;
-    margin-top:25px;
-    min-height:50%;
-}
-.statsBox .statsItems{
-    position:relative;
-    display:inline-block;
-    width:calc(100% / 3);
-    background:rgba(100, 100, 100, .2);
-    min-height:100px;
-    vertical-align: text-top;
-}
-.statsBox .statsItems:nth-child(even){
-    background:rgba(100, 100, 100, .7);
-}
 
 /*  Animated Elements   */
 a, nav ul .logo, nav ul li:not(.logo),
