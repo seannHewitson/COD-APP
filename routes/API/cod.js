@@ -13,10 +13,10 @@ function call(type, platform, gamertag = null){
     return fetch(uri)
     .then(function(response){
         console.log(response);
-        response.json();
+        response.body.json();
     })
     .then(function(response){
-        console.log(response);
+        console.log(response).body;
         return response;
         const { status, data: error } = response;
         if(status !== 'success')
