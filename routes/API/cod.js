@@ -9,15 +9,17 @@ function call(type, platform, gamertag = null){
         uri += type == "stats" ? "/profile/type/mp" :
         "matches/mp/start/0/end/0/details?";
     }
+    console.log(uri);
     return fetch(uri)
     .then(function(response){   response.json() })
     .then(function(response){
+        console.log(response);
         const { status, data: error } = response;
         if(status !== 'success')
             throw new Error(`API Error: ${error.message}`);
         return response;
-    }).catch(function(){
-        console.log("UNDEFINED ERROR");
+    }).catch(function(response){
+        console.log(response);
     });
 }
 
