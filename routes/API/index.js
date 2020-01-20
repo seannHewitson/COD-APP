@@ -20,10 +20,11 @@ module.exports = function(){
             res.send(response.body);
         });
     });
-    router.get('/Test/:platform/:player/', function(req, res){
+    router.get('/Test/:platform/:player/', async function(req, res){
         
         var gamertag = encodeURI(req.params.player);
-        res.send(cod.test(req.params.platform, gamertag));
+        var data = await cod.test(req.params.platform, gamertag);
+        res.send(data);
     });
 
     router.get('/Friends/:platform/:player/', function(req, res){
